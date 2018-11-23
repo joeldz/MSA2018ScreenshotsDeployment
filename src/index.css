@@ -1,24 +1,28 @@
 body{
-  background-color:#ffffff;
+  background-color:#ddf0ff;
   font-family: Helvetica;
 }
 
 /* Header */
 .header-wrapper {
-  background-color: #fafafa;
-  border-bottom: 1px solid #eeeeee;
+  background-color: #bfe2fd;
+  border-bottom: 1px solid #bfe2fd;
   width: 100%;
   height: 60px;
+  position: relative;
+  z-index:5;
 }
 
 .header {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-family: "Arial Black", Gadget, sans-serif;
   font-weight: bold;
+  font-size: 24px;
   position: relative;
   padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 /* Selected Screenshot */
@@ -26,6 +30,7 @@ body{
   padding-top:20px;
   padding-left: 30px;
   padding-right: 30px;
+  background-color:#f6faff;
 }
 
 .screenshot-heading {
@@ -70,19 +75,19 @@ body{
 
 .btn-action{
   font-family: Helvetica;
-  background-color:#f5a623;
-  border-color: #f5a623;
+  background-color:#2366f5;
+  border-color: #2366f5;
   height:40px;
   margin-right: 10px;
   font-size:18px;
-  border-radius: 8px;
+  border-radius: 1px;
   padding-left: 20px;
   padding-right: 20px;
 }
 
 .btn-action:hover {
-  background-color: #d18c1b;
-  border-color: #d18c1b;
+  background-color: #123a8f;
+  border-color: #123a8f;
 }
 
 .btn-add {
@@ -93,6 +98,7 @@ body{
 /* Screenshot List */
 .screenshot-list-wrapper {
   padding-top:20px;
+  background-color:#f6faff;
 }
 
 .screenshot-list-table {
@@ -103,7 +109,13 @@ body{
 }
 
 .search-button:hover {
-  background-color: #d18c1b;
-  border-color: #d18c1b;
+  background-color: #123a8f;
+  border-color: #123a8f;
   color: white;
+}
+
+.cont_ {
+  -webkit-box-shadow: 6px 6px 20px 0 #757575;
+  box-shadow: 6px 6px 20px 0 #757575;
+  background-color:#f6faff;
 }

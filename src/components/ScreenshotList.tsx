@@ -17,7 +17,7 @@ export default class ScreenshotList extends React.Component<IProps, {}> {
 			<div className="container screenshot-list-wrapper">
                 <div className="row screenshot-list-heading">
                     <div className="input-group">
-                        <input type="text" id="search-subtitle-textbox" className="form-control" placeholder="Search By Tags" />
+                        <input type="text" id="search-subtitle-textbox" className="form-control" placeholder="Search Subtitles" />
                         <div className="input-group-append">
                             <div className="btn btn-outline-secondary search-button" onClick = {this.searchBySubtitle}>Search</div>
                         </div>

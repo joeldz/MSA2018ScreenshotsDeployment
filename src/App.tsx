@@ -3,7 +3,7 @@ import Modal from 'react-responsive-modal';
 import './App.css';
 import ScreenshotDetail from './components/ScreenshotDetail';
 import ScreenshotList from './components/ScreenshotList';
-// import PatrickLogo from './patrick-logo.png';
+import ScreenshotSaverLogo from './MyScreenshotSaver.png';
 
 
 interface IState {
@@ -35,23 +35,46 @@ class App extends React.Component<{}, IState> {
 		<div>
 			<div className="header-wrapper">
 				<div className="container header">
-					{/* <img src={PatrickLogo} height='40'/>&nbsp;  */}
-          			My Screenshot Bank - MSA 2018 &nbsp;
+					<img src={ScreenshotSaverLogo} height='40'/>&nbsp; 
+          			My Screenshot Saver &nbsp;
 					<div className="btn btn-primary btn-action btn-add" onClick={this.onOpenModal}>Add Screenshot</div>
 				</div>
 			</div>
 			<div className="container">
-				<div className="row">
-					<div className="col-7">
-						<ScreenshotList screenshots={this.state.screenshots} selectNewScreenshot={this.selectNewScreenshot} searchBySubtitle={this.fetchScreenshots}/>
-					</div>
-					<div className="col-5">
-						<ScreenshotDetail currentScreenshot={this.state.currentScreenshot} />
+				<div className="cont_">
+					<div className="row">
+					{/* style="-webkit-box-shadow: 10px 10px 20px 1px #808080;box-shadow: 10px 10px 20px 1px #808080;" */}
+						<div className="col-7"> 
+							<ScreenshotList screenshots={this.state.screenshots} selectNewScreenshot={this.selectNewScreenshot} searchBySubtitle={this.fetchScreenshots}/>
+						</div>
+						<div className="col-5">
+							<ScreenshotDetail currentScreenshot={this.state.currentScreenshot} />
+						</div>
 					</div>
 				</div>
 			</div>
 			<Modal open={open} onClose={this.onCloseModal}>
 				<form>
+				<div className="form-group">
+						<label>Series</label>
+						<input type="text" className="form-control" id="screenshot-series-input" placeholder="Enter Series" />
+						<small className="form-text text-muted">Optional</small>
+					</div>
+					<div className="form-group">
+						<label>Episode</label>
+						<input type="text" className="form-control" id="screenshot-episode-input" placeholder="Enter Episode" />
+						<small className="form-text text-muted">Optional</small>
+					</div>
+					<div className="form-group">
+						<label>Timestamp</label>
+						<input type="text" className="form-control" id="screenshot-timestamp-input" placeholder="Enter Timestamp" />
+						<small className="form-text text-muted">Optional</small>
+					</div>
+					<div className="form-group">
+						<label>Subtitle</label>
+						<input type="text" className="form-control" id="screenshot-subtitle-input" placeholder="Enter Tag" />
+						<small className="form-text text-muted">Optional</small>
+					</div>
 					<div className="form-group">
 						<label>Image</label>
 						<input type="file" onChange={this.handleFileUpload} className="form-control-file" id="screenshot-image-input" />
@@ -109,14 +132,26 @@ class App extends React.Component<{}, IState> {
 	}
 
 	private uploadScreenshot() {
+		const seriesInput = document.getElementById("screenshot-series-input") as HTMLInputElement
+		const episodeInput = document.getElementById("screenshot-episode-input") as HTMLInputElement
+		const timestampInput = document.getElementById("screenshot-timestamp-input") as HTMLInputElement
+		const subtitleInput = document.getElementById("screenshot-subtitle-input") as HTMLInputElement
 		const imageFile = this.state.uploadFileList[0]
 	
-		if (imageFile === null) {
+		if (seriesInput === null || episodeInput === null || timestampInput === null || subtitleInput === null || imageFile === null) {
 			return;
 		}
+		const series = seriesInput.value
+		const episode = episodeInput.value
+		const timestamp = timestampInput.value
+		const subtitle = subtitleInput.value
 		const url = "http://jdez501screenshotapi.azurewebsites.net/api/Screenshot/upload"
 	
 		const formData = new FormData()
+		formData.append("Series", series)
+		formData.append("Episode", episode)
+		formData.append("Timestamp", timestamp)
+		formData.append("Subtitle", subtitle)
 		formData.append("image", imageFile)
 	
 		fetch(url, {
