@@ -36,7 +36,7 @@ class App extends React.Component<{}, IState> {
 			<div className="header-wrapper">
 				<div className="container header">
 					{/* <img src={PatrickLogo} height='40'/>&nbsp;  */}
-          My Screenshot Bank - MSA 2018 &nbsp;
+          			My Screenshot Bank - MSA 2018 &nbsp;
 					<div className="btn btn-primary btn-action btn-add" onClick={this.onOpenModal}>Add Screenshot</div>
 				</div>
 			</div>
@@ -52,26 +52,6 @@ class App extends React.Component<{}, IState> {
 			</div>
 			<Modal open={open} onClose={this.onCloseModal}>
 				<form>
-					<div className="form-group">
-						<label>Screenshot Series</label>
-						<input type="text" className="form-control" id="screenshot-series-input" placeholder="Enter Series" />
-						<small className="form-text text-muted">You can edit any screenshot later</small>
-					</div>
-					<div className="form-group">
-						<label>Screenshot Episode</label>
-						<input type="text" className="form-control" id="screenshot-episode-input" placeholder="Enter Series" />
-						<small className="form-text text-muted">You can edit any screenshot later</small>
-					</div>
-					<div className="form-group">
-						<label>Screenshot Timestamp</label>
-						<input type="text" className="form-control" id="screenshot-timestamp-input" placeholder="Enter Series" />
-						<small className="form-text text-muted">You can edit any screenshot later</small>
-					</div>
-					<div className="form-group">
-						<label>Subtitle</label>
-						<input type="text" className="form-control" id="screenshot-subtitle-input" placeholder="Enter Tag" />
-						<small className="form-text text-muted">Subtitle is used for search</small>
-					</div>
 					<div className="form-group">
 						<label>Image</label>
 						<input type="file" onChange={this.handleFileUpload} className="form-control-file" id="screenshot-image-input" />
@@ -102,9 +82,9 @@ class App extends React.Component<{}, IState> {
 	}
 
 	private fetchScreenshots(tag: any) {
-		let url = "http://jdez501screenshotapi.azurewebsites.net/api/screenshot"
+		let url = "http://jdez501screenshotapi.azurewebsites.net/api/Screenshot"
 		if (tag !== "") {
-			url += "/tag?=" + tag
+			url += "/tag?tags=" + tag
 		}
 		fetch(url, {
 			method: 'GET'
@@ -129,27 +109,14 @@ class App extends React.Component<{}, IState> {
 	}
 
 	private uploadScreenshot() {
-		const seriesInput = document.getElementById("screenshot-series-input") as HTMLInputElement
-		const episodeInput = document.getElementById("screenshot-episode-input") as HTMLInputElement
-		const timestampInput = document.getElementById("screenshot-timestamp-input") as HTMLInputElement
-		const subtitleInput = document.getElementById("screenshot-subtitle-input") as HTMLInputElement
 		const imageFile = this.state.uploadFileList[0]
 	
-		if (seriesInput === null || episodeInput === null || timestampInput === null || subtitleInput === null || imageFile === null) {
+		if (imageFile === null) {
 			return;
 		}
-	
-		const series = seriesInput.value
-		const episode = episodeInput.value
-		const timestamp = timestampInput.value
-		const subtitle = subtitleInput.value
-		const url = "http://jdez501screenshotapi.azurewebsites.net/api/screenshot/upload"
+		const url = "http://jdez501screenshotapi.azurewebsites.net/api/Screenshot/upload"
 	
 		const formData = new FormData()
-		formData.append("Series", series)
-		formData.append("Episode", episode)
-		formData.append("Timestamp", timestamp)
-		formData.append("Subtitle", subtitle)
 		formData.append("image", imageFile)
 	
 		fetch(url, {

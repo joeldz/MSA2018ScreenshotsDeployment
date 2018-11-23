@@ -102,7 +102,7 @@ export default class ScreenshotDetail extends React.Component<IProps, IState> {
         }
     
         const currentScreenshot = this.props.currentScreenshot
-        const url = "https://jdez501screenshotapi.azurewebsites.net/api/screenshot/" + currentScreenshot.id
+        const url = "https://jdez501screenshotapi.azurewebsites.net/api/Screenshot/" + currentScreenshot.id
         const updatedSeries = seriesInput.value
         const updatedEpisode = episodeInput.value
         const updatedTimestamp = timestampInput.value
@@ -133,7 +133,7 @@ export default class ScreenshotDetail extends React.Component<IProps, IState> {
     }
 
     private deleteScreenshot(id: any) {
-        const url = "http://jdez501screenshotapi.azurewebsites.net/api/screenshot/" + id
+        const url = "http://jdez501screenshotapi.azurewebsites.net/api/Screenshot/" + id
     
         fetch(url, {
             method: 'DELETE'
